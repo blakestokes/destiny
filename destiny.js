@@ -2,14 +2,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var parallaxEnabled = true;
     var mouseX = event.pageX;
     var mouseY = event.pageY;
-console.log(window);
-    // var windowWidth = window.innerWidth;
-    // var	windowHeight = window.innerHeight;
-    var windowWidth = window.screen.width;
-    var	windowHeight = window.screen.height;
+    var windowWidth = window.innerWidth;
+    var	windowHeight = window.innerHeight;
 
     document.querySelector('#lax').onchange = function() {
-        // var checked = document.querySelector('#lax').checked;
         var checked = this.checked;
         if (checked == true) {
             parallaxEnabled = true;
@@ -20,7 +16,6 @@ console.log(window);
         else {
             parallaxEnabled = false;
             document.querySelectorAll('.content, .character').forEach(function(element) {
-                // element.style.cssText = "-webkit-transform: translateX(0%) translateY(0%); -moz-transform: translateX(0%) translateY(0%); transform: translateX(0%) translateY(0%)";
                 element.style.webkitTransform = "translateX(0%) translateY(0%)";
                 element.style.MozTransform = "translateX(0%) translateY(0%)";
                 element.style.transform = "translateX(0%) translateY(0%)";
@@ -47,6 +42,7 @@ console.log(window);
         var stringCY = (0-percentCY-speed) + "%";
 
         var cursor = document.querySelector('.cursor');
+        showCursor();
         cursor.style.webkitTransform = "translateX(" + mouseX + "px) translateY(" + mouseY + "px)";
         cursor.style.MozTransform = "translateX(" + mouseX + "px) translateY(" + mouseY + "px)";
         cursor.style.transform = "translateX(" + mouseX + "px) translateY(" + mouseY + "px)";
@@ -87,7 +83,7 @@ console.log(window);
         };
     });
 
-    document.querySelectorAll(".item-select .item").forEach(function(element){
+    document.querySelectorAll(".item-select, .item").forEach(function(element){
         element.onclick = function() {
             var current = this.parentNode.parentNode.querySelector(".equipped").innerHTML;
             var item = this.innerHTML;
@@ -103,6 +99,48 @@ console.log(window);
             this.innerHTML = current;
         }
     });
+});
+
+function addEvent(obj, evt, fn) {
+    if (obj.addEventListener) {
+        obj.addEventListener(evt, fn, false);
+    }
+    else if (obj.attachEvent) {
+        obj.attachEvent("on" + evt, fn);
+    }
+}
+
+function showCursor() {
+    document.querySelector('.cursor').hidden = false;
+}
+
+function hideCursor() {
+    document.querySelector('.cursor').hidden = true;
+}
+
+function reCenterScreen() {
+    // var content = document.querySelector('.content');
+    move('.content, .character')
+        .translate(0, 0)
+        .duration('2s')
+        .end();
+    // content.style.webkitTransform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+    // content.style.MozTransform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+    // content.style.transform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+}
+
+addEvent(document, "mouseout", function(e) {
+    e = e ? e : window.event;
+    var from = e.relatedTarget || e.toElement;
+    if (!from || from.nodeName == "HTML") {
+        // stop your drag event here
+        // for now we can just use an alert
+        // alert("left window");
+        hideCursor();
+        setTimeout(function(){
+            reCenterScreen();
+        }, 500);
+    }
 });
 
 
