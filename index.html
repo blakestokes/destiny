@@ -5,12 +5,19 @@
         <title>Destiny Menu</title>
         <meta name="description" content="Online resources and tutorials for amateur web developers">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="confetti.css">
         <link rel="stylesheet" href="destiny.css">
     </head>
     <body>
         <div class="settings">
-          <input class="parallax" id="lax" type="checkbox" checked />
-          <label for="lax">Toggle parallax effect</label>
+            <input class="parallax" id="lax" type="checkbox" checked />
+            <label for="lax">Toggle parallax effect</label>
+            <div>
+                <button id="stopButton">Stop Confetti</button>
+            </div>
+            <div>
+                <button id="startButton">Drop Confetti</button>
+            </div>
         </div>
         <!-- <p class="thanks">
           CSS Recreation of the "Destiny" Item Menu<br>
@@ -218,7 +225,10 @@
         </div>
         <div class="character"></div>
         <div class="lines"></div>
+        <canvas id="canvas"></canvas>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="./move.min.js"></script>
+        <script src="./confetti.js"></script>
         <script src="./destiny.js"></script>
     </body>
 </html>

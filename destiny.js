@@ -53,6 +53,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
             content.style.MozTransform = "translateX(" + stringX + ") translateY(" + stringY + ")";
             content.style.transform = "translateX(" + stringX + ") translateY(" + stringY + ")";
 
+            // var canvas = document.querySelector('#canvas');
+            // canvas.style.webkitTransform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+            // canvas.style.MozTransform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+            // canvas.style.transform = "translateX(" + stringX + ") translateY(" + stringY + ")";
+
             var character = document.querySelector('.character');
             character.style.webkitTransform = "translateX(" + stringCX + ") translateY(" + stringCY + ")";
             character.style.MozTransform = "translateX(" + stringCX + ") translateY(" + stringCY + ")";
